@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Weather Station</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #eef; padding: 20px; }
+    .card { background: white; padding: 20px; margin: 10px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
+    .container { display: flex; flex-wrap: wrap; justify-content: center; }
+    h1 { text-align: center; }
+    .data { font-size: 1.5em; }
+  </style>
+</head>
+<body>
+  <h1>Live Weather Station</h1>
+  <div class="container">
+    <div class="card">
+      <h3>Temperature</h3>
+      <p class="data" id="temp">--</p>
+    </div>
+    <div class="card">
+      <h3>Humidity</h3>
+      <p class="data" id="hum">--</p>
+    </div>
+    <div class="card">
+      <h3>Air Quality</h3>
+      <p class="data" id="air">--</p>
+    </div>
+    <div class="card">
+      <h3>Wind Speed</h3>
+      <p class="data" id="wind">--</p>
+    </div>
+  </div>
+
+  <script>
+    async function fetchData() {
+      const res = await fetch('/api/data');
+      const data = await res.json();
+      document.getElementById('temp').textContent = data.temp + ' °C';
+      document.getElementById('hum').textContent = data.hum + ' %';
+      document.getElementById('air').textContent = data.air + ' ppm';
+      document.getElementById('wind').textContent = data.wind + ' m/s';
+    }
+    setInterval(fetchData, 3000);
+    fetchData();
+  </script>
+</body>
+</html
