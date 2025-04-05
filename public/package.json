@@ -1,0 +1,11 @@
+{
+  "name": "weather-station",
+  "version": "1.0.0",
+  "description": "Live weather station website using ESP32",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
